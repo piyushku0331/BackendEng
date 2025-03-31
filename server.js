@@ -17,22 +17,44 @@ app.post('/users',async(req,res)=>{
     });
     await newUser.save();
     res.send("User added");
-})
+});
 
 app.get('/users',async(req,res)=>{
     let allusers = await user.find();
     res.send(allusers);
-})
+});
 
 app.get('/users/:id',async (req,res)=>{
     let {id} = req.params;
     let oneUser = user.findById(id);
     res.send(oneUser);
-})
+});
 
 app.get('/',(req,res)=>{
     res.status(200).send("Hello Welcome to Home Page");
-})
+});
+
+app.delete('/deleteone/:id',async (req,res)=>{
+    let {id} = req.params;
+    await user.findByIdAndDelete(id);
+    res.send("User Deleted");
+});
+
+app.put('/users/:id',async (req,res)=>{
+    let {id} = req.params;
+    let {name,email,password} = req.body;
+    let updateUser = await user.findById(id);
+    // {
+    //     name:"Piyush",
+    //     email:"Piyushku0331@gmail.com",
+    //     password:"123456"
+    // }
+    updateUser.name=name;
+    updateUser.email=email;
+    updateUser.password=password;
+    await updateUser.save();
+    res.send("User Updated");
+});
 
 mongoose.connect('mongodb://localhost:27017/Mongoose-1')
 .then(()=>console.log("Connected!!"))
@@ -40,4 +62,4 @@ mongoose.connect('mongodb://localhost:27017/Mongoose-1')
 
 app.listen(PORT,()=>{
     console.log(`server listening at http://localhost:${PORT}`);
-})
+});
