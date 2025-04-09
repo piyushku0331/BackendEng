@@ -10,6 +10,13 @@ const blogRoutes = require("./routes2/blogRoutes");
 const app = express();
 app.use('/users',userRoutes);
 app.use('/blogs',blogRoutes);
+app.set('view engine', 'hbs');
+app.get('/',(req,res)=>{
+    res.render("home");
+})
+app.get('/user',(req,res)=>{
+    res.render("user");
+})
 
 const PORT = 5000;
 
