@@ -8,14 +8,24 @@ const userRoutes = require("./routes2/userRoutes");
 const blogRoutes = require("./routes2/blogRoutes");
 
 const app = express();
+app.set('view engine','hbs')
 app.use('/users',userRoutes);
 app.use('/blogs',blogRoutes);
-app.set('view engine', 'hbs');
-app.get('/',(req,res)=>{
-    res.render("home");
-})
+  
 app.get('/user',(req,res)=>{
     res.render("user");
+})
+
+app.get('/home',(req,res)=>{
+    res.render("home",{
+        name:"Piyush"
+    });
+})
+
+app.get('/blogsData',async(req,res)=>{
+    let allBlogs=await blog.find();
+    res.render("blogs"
+    );
 })
 
 const PORT = 5000;

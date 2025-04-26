@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is Blog Page</h1>
+    {{#if data}}
+    {{#each data}}
+    <li>
+    <h1>{{content}}</h1>
+    <h1>{{author}}</h1>
+    <h1>{{date}}</h1>
+    </li>
+    {{/each}}
+    {{else}}
+    <h1>No data found</h1>
+    {{/if}}
+</body>
+</html>
