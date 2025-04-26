@@ -24,8 +24,16 @@ app.get('/home',(req,res)=>{
 
 app.get('/blogsData',async(req,res)=>{
     let allBlogs=await blog.find();
-    res.render("blogs"
-    );
+    res.render("blogs",{
+        data:allBlogs
+    });
+})
+
+app.get('/usersData',async(req,res)=>{
+    let allUsers=await user.find();
+    res.render("user",{
+        userData:allUsers
+    });
 })
 
 const PORT = 5000;
