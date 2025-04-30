@@ -6,17 +6,27 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>This is Blog Page</h1>
-    {{#if data}}
-    {{#each data}}
-    <li>
-    <h1>{{content}}</h1>
-    <h1>{{author}}</h1>
-    <h1>{{date}}</h1>
-    </li>
-    {{/each}}
-    {{else}}
-    <h1>No data found</h1>
-    {{/if}}
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/blogsData">Blogs</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>This is Blog page</h1>
+    <ul>
+       {{#if data}}
+       {{#each data}}
+       <li>
+        <h1>{{title}}</h1>
+        <p>{{content}}</p>
+        <a href="/blogsData/{{_id}}">Read</a>
+       </li>
+       {{/each}}
+       {{else}}
+       <h4>No blogs found</h4>
+       {{/if}}
+    </ul>
 </body>
 </html>

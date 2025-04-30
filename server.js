@@ -16,7 +16,7 @@ app.get('/user',(req,res)=>{
     res.render("user");
 })
 
-app.get('/home',(req,res)=>{
+app.get('/',(req,res)=>{
     res.render("home",{
         name:"Piyush"
     });
@@ -26,6 +26,14 @@ app.get('/blogsData',async(req,res)=>{
     let allBlogs=await blog.find();
     res.render("blogs",{
         data:allBlogs
+    });
+})
+
+app.get('/blogsData/:id',async(req,res)=>{
+    let {id}=req.params;
+    let Blog=await blog.findById(id);
+    res.render("blogs",{
+        blog:Blog
     });
 })
 
