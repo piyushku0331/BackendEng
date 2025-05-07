@@ -8,6 +8,7 @@ const userRoutes = require("./routes2/userRoutes"); // User routes
 const blogRoutes = require("./routes2/blogRoutes"); // Blog routes
 
 const app = express();
+const hbs=require('hbs');
 
 // Set up the view engine (Handlebars)
 app.set('view engine', 'hbs');
@@ -15,7 +16,7 @@ app.set('view engine', 'hbs');
 // Middleware for parsing form and JSON data
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+hbs.registerPartials(__dirname + '/views/partials', function (err) {});
 // Route setup
 app.use('/users', userRoutes);
 app.use('/blogs', blogRoutes);
@@ -63,10 +64,9 @@ app.get('/addBlog', (req, res) => {
 
 // Handle add blog form submission
 app.post('/blogsData', async (req, res) => {
-    const { title, author, content, date } = req.body;
+    const { author, content, date } = req.body;
 
     const newBlog = new Blog({
-        title,
         author,
         content,
         date
