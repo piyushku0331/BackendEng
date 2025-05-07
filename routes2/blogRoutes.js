@@ -1,4 +1,5 @@
 const express = require('express');
+const Blog = require('../model/blog'); 
 const router = express.Router();
 
 router.post('/',async(req,res)=>{
@@ -13,13 +14,13 @@ router.post('/',async(req,res)=>{
 });
 
 router.get('/',async(req,res)=>{
-    let allblogs = await blog.find();
+    let allblogs = await Blog.find();
     res.send(allblogs);
 });
 
 router.get('/:id',async (req,res)=>{
     let {id} = req.params;
-    let oneBlog = blog.findById(id);
+    let oneBlog = Blog.findById(id);
     res.send(oneBlog);
 });
 
